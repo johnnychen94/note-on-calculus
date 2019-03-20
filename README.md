@@ -1,1 +1,5 @@
-Notes on Mathematics
+# Notes on Mathematics
+
+## compile
+
+using `xelatex` to compile

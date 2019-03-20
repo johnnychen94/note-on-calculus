@@ -1,0 +1,104 @@
+%!TEX root = ../main.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 页面设置
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 页眉页脚
+\pagestyle{fancy}
+\cfoot{\thepage / \pageref{LastPage}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 字体字号定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 字号
+\newcommand{\sanhao}{\fontsize{16pt}{16pt}\selectfont}      % 三号，单倍行距
+\newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}     % 四号，单倍行距
+\newcommand{\xiaosi}{\fontsize{12pt}{12pt}\selectfont}    % 小四，单倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont} % 五号，单倍行距
+
+\newcommand{\song}{\CJKfamily{song}}
+\newcommand{\hei}{\CJKfamily{hei}}
+\newcommand{\kai}{\CJKfamily{kai}}
+\newcommand{\fs}{\CJKfamily{fs}}
+\newcommand{\xkai}{\CJKfamily{xkai}}
+
+% defaultfont 默认字体命令
+\def\defaultfont{\renewcommand{\baselinestretch}{1.22}\wuhao}
+  % 五号，单倍行距
+
+% 设置目录字体和行间距
+\def\defaultmenufont{\renewcommand{\baselinestretch}{1.22}\wuhao}
+  % 五号，单倍行距
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定理环境
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{example}{Example}[section]
+\newenvironment{solution}[1][]{\par\medskip
+   \noindent \textbf{Solution~} \rmfamily #1}{\medskip}
+\renewenvironment{proof}[1][]{\par\medskip
+  \noindent \textbf{Proof~} \rmfamily #1}{\qed\medskip}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 代码环境
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{numbers=left,
+  basicstyle=\scriptsize\ttfamily,
+  numberstyle= \tiny,
+  keywordstyle= \color{ blue!70},
+  commentstyle=\color{red!50!green!50!blue!50},
+  frame=shadowbox,
+  rulesepcolor= \color{ red!20!green!20!blue!20},
+  xleftmargin= 2em,
+  xrightmargin= 2em,
+  aboveskip= 1em,
+  breakatwhitespace=false,
+  keepspaces=true,
+  tabsize=2,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  escapeinside=“”
+  }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 图片环境
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup[figure]{
+  labelfont={bf},
+  labelformat={default},
+  name={图},
+  labelsep=colon
+  }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 脚注引用
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\interfootnotelinepenalty=10000 % 禁止脚注显示在第二页
+% redefine footnote as circled number: ①②③④⑤⑥⑦⑧⑨
+\renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 其他
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 支持用圆将字符圈起来
+% \usepackage{tikz}
+%
+%	EXAMPLE:
+%	\begin{enumerate}[label = \protect\circled{\arabic*}]
+%		\item First item
+%		\item Second item
+%	\end{enumerate}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}

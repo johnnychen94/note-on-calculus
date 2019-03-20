@@ -1,0 +1,115 @@
+% !TEX root = ../main.tex
+
+\section{曲线积分}
+
+
+\subsection{第一类曲线积分}
+
+首先, 回忆一下一元函数定积分的定义
+\begin{definition}[定积分]
+	设$f(x)$为定义在闭区间$[a,b]$上的有界函数,若对$[a,b]$取任意分割$P: a =x_0<x_1<x_2< \dots <x_n=b$,  记小区间$[x_{i-1},x_i]$的长度为$\Delta x_i = x_i-x_{i-1}$, 并记$\lambda = \max  \limits_{1\leq i\leq n} \Delta x_i$.若$\forall \xi_i\in [x_{i-1},x_i]$,极限
+		$$\lim_{\lambda \rightarrow 0} \sum_{i=1}^n f(\xi_i) \Delta x_i$$
+	存在, 且与分割$P$与点$\xi_i$的选取无关,则称$f(x)$在$[a,b]$上\textbf{Riemann可积}, 其极限称为$f(x)$在$[a,b]$上的定积分, 记为
+		$$ \int_a^b f(x) \dif x$$
+\end{definition}
+
+	注意到这个定积分是定义在闭区间$[a,b]$上的, 现在, 我们试图将这一定义从闭区间$[a,b]$上扩充到曲线$\gamma$上. 为了实现这一目的, 我们考虑空间上的一条曲线$\gamma \colon [a,b] \rightarrow \mathbb{R}^3$, 并设$f\colon \mathbb{R}^3 \rightarrow \mathbb{R}$ 为三维空间上的函数, 于是$f \circ \gamma \colon [a,b]\rightarrow \mathbb{R}$ 上可以沿用定积分的定义:
+		$$\int_a^b f \circ \gamma(t) \dif \gamma(t)$$
+	并将该式定义为函数$f(x)$在曲线$\gamma$上的积分, 即
+		$$\int_\gamma f \dif \gamma := \int_a^b f \circ \gamma(t) \dif \gamma(t)$$
+	这就是\textbf{第一类曲线积分}的定义, 等价地, 我们可以将该定义还原为\emph{和式的极限}的形式：
+
+	\begin{definition}[第一类曲线积分]
+		设$f(x)$为定义在曲线$\gamma:[a,b]\rightarrow \mathbb{R}^3$上的有界函数,若对$\gamma$取任意分割$P: \gamma(a) =\gamma(x_0)<\gamma(x_1)<\gamma(x_2)< \dots <\gamma(x_n)=\gamma(b)$,  记弧$\gamma([x_{i-1},x_i])$的长度为$\Delta \gamma_i$, 并记$\lambda = \max  \limits_{1\leq i\leq n} \Delta \gamma_i $. 若$\forall \xi_i \in [x_{i-1},x_i]$, 极限
+			$$\lim_{\lambda \rightarrow 0} \sum_{i=1}^n f(\gamma(\xi_i)) \Delta \gamma_i$$
+		存在, 且与分割$P$与点$\xi_i$的选取无关,则称其极限称为$f(x)$在$\gamma$上的\textbf{第一类曲线积分}, 记为
+			$$ \int_\gamma f(\gamma) \dif \gamma$$
+	\end{definition}
+
+	可以看到, 第一类曲线积分就是将定积分定义中的积分区间拓展到曲线$\gamma$上面来.\par
+	下面介绍第一类曲线积分的计算方法（其本质都是对弧长$\dif\gamma$的计算）.
+
+	设空间曲线$\gamma$的参数表示为：
+	\begin{equation*}
+		\gamma: \left\{ \begin{aligned}
+				x =& x(t) \\
+				y =& y(t) \qquad t\in[a,b]\\
+				z =& z(t) \\
+			\end{aligned} \right.
+	\end{equation*}
+	其中弧长$\dif\gamma(t) = \sqrt{x'^2(t)+y'^2(t)+z'^2(t)} \dif t$, 代入到第一类曲线积分的定义中即有:
+	\begin{equation}
+	\label{eq:first_class_integral_para_general}
+	\begin{aligned}
+			\int_\gamma f(\gamma) \dif \gamma
+			=& \int_a^b f \circ \gamma(t) \dif \gamma(t) \\
+			=& \int_a^b f(x(t),y(t),z(t)) \sqrt{x'^2(t)+y'^2(t)+z'^2(t)} \dif t
+		\end{aligned}
+\end{equation}
+	这就是参数方程形式下第一类曲线积分的计算公式.特别的,
+	\begin{enumerate}
+		\item 当$x$自身就是参变量时, 即
+			\begin{equation*}
+				\gamma: \left\{ \begin{aligned}
+						x =& x(x) \\
+						y =& y(x) \qquad x\in[a,b]\\
+						z =& z(x) \\
+					\end{aligned} \right.
+			\end{equation*}
+			此时有$x'(x)=1$, 于是式\eqref{eq:first_class_integral_para_general}变为
+				\begin{equation}
+				\label{eq:first_class_integral_para_special_1}
+					\int_\gamma f(\gamma) \dif \gamma = \int_a^b f(x,y(x),z(x)) \sqrt{1+y'^2(x)+z'^2(x)} \dif x
+				\end{equation}
+
+		\item	当$\gamma$退化为平面曲线时, 即
+			\begin{equation*}
+				\gamma: \left\{ \begin{aligned}
+						x =& x(t) \\
+						y =& y(t) \qquad t\in[a,b]\\
+						z =& 0 \\
+					\end{aligned} \right.
+			\end{equation*}
+			此时$z'(t)=0$,于是式\eqref{eq:first_class_integral_para_general}变为
+			\begin{equation}
+				\int_\gamma f(\gamma) \dif \gamma = \int_a^b f(x(t),y(t)) \sqrt{x'^2(t)+y'^2(t)} \dif t
+			\end{equation}
+		\item 类似地, 当$\gamma$退化为$y=y(x)$时, 有
+			\begin{equation}
+				\int_\gamma f(\gamma) \dif \gamma = \int_a^b f(x,y(x)) \sqrt{1+y'^2(x)} \dif x
+			\end{equation}
+	\end{enumerate}
+
+	\textbf{思考：}空间曲线的表示方式有两种——参数方程的形式以及两个空间曲面交线的形式, 那么为什么第一类曲线积分只针对前者而言可以计算，而针对后者而言却没办法计算. 例如,给定曲线
+	\begin{equation*}
+		\gamma: \left\{ \begin{aligned}
+				F(x,y,z) =& 0 \\
+				G(x,y,z) =& 0
+			\end{aligned} \right.
+	\end{equation*}
+	而言, 为什么不存在像前面所推导的那些一般的计算公式？\par
+	这是因为, 尽管能够试图计算出曲线上每一点局部的弧长$\dif\gamma$, 但计算和式$\sum_{i=1}^n f(\gamma(\xi_i)) \Delta \gamma_i$的时候一切都不一样了, 因为我们在试图计算每一点局部的弧长$\dif\gamma$时已经预先设定了一个划分$P$(注意多元函数的隐函数求导法则的结论). 这与第一类曲线积分的定义有一定的矛盾,因此不可参数化的曲线的第一类曲线积分一般不存在.(WRONG!!!)
+
+	\subsection{第二类曲线积分}
+	在定义第一类曲线积分时，函数$f$不带方向。现在我们在第一类曲线积分的基础上再作一步扩充，引入向量值函数$\vv{F}\colon\mathbb{R}^3\rightarrow \mathbb{R}^3$，于是其曲线积分便定义为：
+		$$\int_\gamma \vv{F}(\gamma) \dif \vv{\gamma}$$
+	这就是\textbf{第二类曲线积分}。为了进一步分析这一式子，此时我们将$\vv{\gamma}$与$\vv{F}$写成向量值函数的形式：
+			$$\vv{\gamma} = x(t)\vv{i}+y(t)\vv{j}+z(t)\vv{k},\qquad t\in[a,b]$$
+			$$\vv{F}(x,y,z) = P(x,y,z)\vv{i}+Q(x,y,z)\vv{j}+R(x,y,z)\vv{k}$$
+	于是有
+		$$\dif \vv{\gamma} = (x'(t)\vv{i}+y'(t)\vv{j}+z'(t)\vv{k})\dif t$$
+	代入第二类曲线积分的定义式中，注意向量的乘法，就有
+		\begin{equation}
+			\begin{aligned}
+				& \int_\gamma \vv{F}(\gamma) \dif \vv{\gamma} \\
+				&= \int_\gamma (P\vv{i}+Q\vv{j}+R\vv{k})\cdot (x'(t)\vv{i}+y'(t)\vv{j}+z'(t)\vv{k})\dif t \\
+				&= \int_\gamma (Px'(t)+Qy'(t)+Rz'(t)) \dif t \\
+				&= \int_\gamma (P\dif x + Q\dif y + R\dif z)
+			\end{aligned}
+		\end{equation}
+	这便是第二类曲线积分的另一种定义方式。(类似于第一类曲线积分，我们也可以用\emph{和式的极限}的形式给出它的等价定义。)\par
+	至于第二类曲线积分的几种计算方式，则全部包含在上式之中.
+
+	\subsection{格林公式}
+
+	$$ \iint_D (\frac{\partial Q}{\partial x} -\frac{\partial P}{\partial y}) \dif d\dif y = \int_L P\dif x+Q \dif y$$

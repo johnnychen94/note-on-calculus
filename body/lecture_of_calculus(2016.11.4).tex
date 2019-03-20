@@ -1,0 +1,130 @@
+% !TEX root = ../main.tex
+
+\newcommand{\sod}{\frac{\dif^2y}{\dif x ^2}}
+\newcommand{\rmk}{\textbf{Remark:}}
+
+
+\section{由参数方程决定的函数的高阶导数的计算}
+
+
+\begin{example}
+\label{eg:function_induced_by_parafunctions}
+	计算由下述参数方程所确定的函数$y=y(x)$的二阶导数$\sod$.
+		\begin{equation}
+		\label{eq:order_0}
+		 	\left\{
+				\begin{aligned}
+				x & = \sin(t) - t \\
+				y & = 1 - \cos(t) \\
+				\end{aligned}
+			\right.
+		\end{equation}
+
+\end{example}
+
+\begin{solution}
+	对\eqref{eq:order_0}微分，有
+	\begin{equation}
+		\label{eq:order_1}
+		 	\left\{
+				\begin{aligned}
+				\dif x & = (\cos(t) - 1) dt \\
+				\dif y & = \sin(t) dt \\
+				\end{aligned}
+			\right.
+		\end{equation}
+	将\eqref{eq:order_1}中两式相除，有
+	\begin{equation}
+		\label{eq:fod}
+		 	\frac{\dif y}{\dif x} = \frac{\sin(t)}{\cos(t)-1}
+		\end{equation}
+	然后，根据二阶导数的定义，有
+		\begin{equation}
+		\label{eq:true_sod}
+		\begin{aligned}
+			\sod &= \frac{\dif}{\dif x}(\frac{\dif y}{\dif x}) = \frac{\dif}{\dif x}(\frac{\sin(t)}{\cos(t)-1})  \\
+					 &= \frac{\dif}{\dif t}(\frac{\sin(t)}{\cos(t)-1}) \frac{\dif t}{\dif x} = \frac{-1}{(\cos(t)-1)^2}
+		\end{aligned}
+		\end{equation}
+\end{solution}
+
+	\rmk 这一解法根据的是二阶导数的定义，属于标准的正确解法，下面讨论一种很有意思的\textbf{错误}解法.\par
+
+	\begin{solution}
+	 对\eqref{eq:order_1}微分，得到
+	 	\begin{equation}
+		\label{eq:order_2}
+		 	\left\{
+				\begin{aligned}
+				\dif^2 x & = -\sin(t) dt^2 \\
+				\dif^2 y & = \cos(t) dt^2 \\
+				\end{aligned}
+			\right.
+		\end{equation}
+	从而，取\eqref{eq:order_2}中的$\dif^2 y$与\eqref{eq:order_1}中的$\dif x$进行除法,便得到
+		\begin{equation}
+			\label{eq:fake_sod}
+			\sod = \frac{\cos(t)}{(\cos(t)-1)^2}
+		\end{equation}
+	\end{solution}
+
+	根据前面的标准解法可知，这一解法得到的答案显然是错误的. 关于这一事实的一个\textbf{逃避问题式}的解释就是：我们只能将$\frac{\dif y}{\dif x}$或$\sod$ 看成一个整体，而不能进行任意的乘除移项操作.\par
+
+	实际上，考虑到$x$既是参数方程中的一个因变量$x(t)$，又是由参数方程所确定的函数$y=y(x)$的一个自变量，\eqref{eq:true_sod}式与\eqref{eq:fake_sod}的实际表达式应该如下：
+
+	$$\frac{\cos(t)}{(\cos(t)-1)^2} = \frac{\dif^2 y(t)}{\dif x(t)^2} \neq \frac{\dif^2 y(x)}{\dif x^2}= \frac{-1}{(\cos(t)-1)^2}$$
+	因此，这两个式子不相等的根本原因并不在于$\frac{\dif y}{\dif x}$是一个整体\footnote{否则的话，在求一阶导数的时候，便不能将$\frac{dy}{dx}$写成$\frac{\dif y}{\dif t}\cdot\frac{\dif t}{\dif x}$了.}，而在于\emph{一阶微分具有形式不变性，二阶微分不具有形式不变性}. 为了解释清楚这一问题，我们先对这句话的意思进行解释.\par
+
+	\textbf{(一阶微分具有形式不变性)} 对于函数 $y = y(x) = y(x(t))$，$x=x(t)$ 为中间变量，由链式法则可得，
+	\begin{equation*}
+	\begin{aligned}
+		\dif y(t) =  \dif y(x(t)) &= y'(x(t))x'(t)\dif t \\
+			&= y'(x(t))\dif x(t)
+	\end{aligned}
+	\end{equation*}
+	另一方面，对于函数$y = y(x)$, $x$ 为自变量，它的一阶微分为$\dif y = y'(x) \dif x$. 因此，不论$x$究竟是自变量还是中间变量，它的一阶微分的形式都相同，因此才称一阶微分具有形式不变性.\par
+	\textbf{(二阶微分不具有形式不变性)} 对于函数 $y = y(x) = y(x(t))$，$x = x(t)$为中间变量，根据二阶微分的定义，可知：
+	\begin{equation*}
+	\begin{aligned}
+		\dif^2 y(t) =  \dif (\dif y(t)) &= \dif(y'(x(t))x'(t)\dif t) \\
+		&= \dif(y'(x(t)))x'(t)\dif t + y'(x(t))\dif(x'(t)\dif t)\\
+		&= y''(x(t))(x'(t))^2\dif t^2 + y'(x(t))x''(t)\dif t^2 \\
+	\end{aligned}
+	\end{equation*}
+	注意到$\frac{\dif^2 x(t)}{\dif t^2} = x''(t)$，因此上式变为
+	\begin{equation}
+	\label{eq:sod_formula}
+	\dif^2 y(t)=y''(x(t))\dif x(t)^2 + y'(x(t))\dif^2x(t)
+	\end{equation}
+	另一方面，对于函数$y = y(x)$, $x$ 为自变量，它的二阶微分为$\dif^2 y(x) = y''(x)\dif x^2$. 比较这两个式子的形式可以发现，当$x$为中间变量时，二阶微分多了一项$y'(x(t))x''(t)\dif t^2$，因此我们称二阶微分不具有形式不变性.\footnote{实际上，形式不变性只对一阶微分成立，而对于高阶微分均不成立.}\par
+
+	将\eqref{eq:sod_formula}式变形，可得
+	$$\begin{aligned}
+	\frac{\dif^2 y(t)}{\dif x(t)^2} &=y''(x(t)) + y'(x(t))\frac{\dif^2x(t)}{\dif x(t)^2}\\
+	&= \frac{\dif^2 y(x)}{\dif x^2}+\frac{\dif y(x)}{\dif x}\cdot\frac{\dif^2x(t)}{\dif x(t)^2}\end{aligned}$$
+	回到例题，将\eqref{eq:order_1}-\eqref{eq:order_2}式中的相应结果代入上式可知：
+		$$\begin{aligned}
+		\frac{\dif^2 y(x)}{\dif x^2}+\frac{\dif y(x)}{\dif x}\frac{\dif^2x(t)}{\dif x(t)^2} &= \frac{-1}{(\cos(t)-1)^2} + \frac{\sin(t)}{\cos(t)-1}\cdot\frac{-\sin(t) dt^2}{(\cos(t) - 1)^2 dt^2}\\
+		&= \frac{\cos(t)}{(\cos(t)-1)^2} = \frac{\dif^2 y(t)}{\dif x(t)^2}
+		\end{aligned}$$
+	因此，回顾例题中的第二种解法，错误的原因在于：
+	\begin{enumerate}
+		\item 没有分清楚$x$在参数方程下是因变量，而在由参数方程确定的函数$y=y(x)$中又是自变量；
+		\item 二阶微分不具有形式不变性.
+	\end{enumerate}
+
+	\rmk 导数的微分表达式的好处在于：
+	\begin{enumerate}
+		\item 可以不把$\frac{\dif y}{\dif x}$看作一个整体，因为通过分别计算$\dif y$与$\dif x$的方式在很多时候会非常方便，甚至可能是唯一的办法(例如例题中所给出的参数方程没有办法给出显式的$y=y(x)$的表达式的时候）；
+		\item 导数表达式能够表达的内容微分表达式完全能够表达，而微分表达式能够表达的内容并不一定能够用导数表达式来表达.\footnote{从数学的角度来看，微分是比导数更容易被抽象的一个概念；所以个人认为，发明这一记号的莱布尼茨比牛顿的理论水平高的多.}
+	\end{enumerate}
+
+	\rmk 对于函数$y=y(x)$，$x$可能为自变量，也可能为中间变量$x(t)$的情况下，我们有以下结论：
+	\begin{enumerate}
+		\item 由于一阶微分具有形式不变性，因此，无论$x$是自变量还是中间变量，$\frac{\dif y(t)}{\dif x(t)}$与$\frac{\dif y(x)}{\dif x}$表达式的形式都完全相同，因此可以不考虑参数，简单地记为$\frac{\dif y}{\dif x}$，并且不会带来歧义；
+		\item 由于二阶微分不具有形式不变性，因此，只有在$x$为自变量的情况下，才有$$\frac{\dif(\frac{\dif y}{\dif x})}{\dif x}= \frac{1}{\dif x}\cdot\frac{\dif^2 y\dif x - \dif^2 x\dif y}{\dif x^2} = \frac{\dif^2 y}{\dif x^2}$$
+		在$x$为因变量的情况下，二阶导数只能够写为$\frac{\dif}{\dif x(t)}(\frac{\dif y(t)}{\dif x(t)})$的形式，而绝不能写成$\frac{\dif^2 y(t)}{\dif x(t)^2}$的形式. \emph{在例题及解答中所使用的关于二阶导数的一些记号是有歧义的}.
+	\end{enumerate}
+
+\textbf{补充：} 对$y=y(x)$来说，$\dif^2 y=0$一般不成立，但是$\dif^2 x =0$一定成立. 这一点可以这样理解，将$x$看成关于自身的一个函数$x(x) = x$，求二阶导，有$$
+\frac{\dif x}{\dif x} = 1 \qquad \frac{\dif^2 x}{\dif x^2} =0$$ 由于$\dif x \neq 0$，故$\dif^2 x =0$.
